@@ -1,0 +1,36 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+ul.unstyled {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+#map-canvas {
+    float: left;
+    width: 70%;
+    height: 100%;
+}
+
+#control-panel {
+    float: right;
+    width: 30%;
+    height: 100%;
+    text-align: left;
+}
+
+#control-panel .panel {
+    margin: 10px;
+}
+
+#control-panel h3 {
+    margin-bottom: 3px;
+}
+
+.form-actions {
+    margin-top: 5px;
+}
