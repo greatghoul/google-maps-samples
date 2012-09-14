@@ -1,12 +1,17 @@
+/**
+ * References:
+ *   https://google-developers.appspot.com/maps/documentation/javascript/examples/directions-waypoints
+ */
+
 var directionDisplay;
 var directionsService = new google.maps.DirectionsService();
 var map;
 
 function initialize() {
     directionsDisplay = new google.maps.DirectionsRenderer();
-    var chicago = new google.maps.LatLng(41.850033, -87.6500523);
+    var chicago = new google.maps.LatLng(34.198564,108.895614);
     var mapOptions = {
-        zoom: 6,
+        zoom: 15,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         center: chicago
     }
@@ -15,16 +20,13 @@ function initialize() {
 }
 
 function calcRoute() {
-    var start = document.getElementById('start').value;
-    var end = document.getElementById('end').value;
+    var start = document.getElementById('start-location').value;
+    var end = document.getElementById('end-location').value;
     var waypts = [];
-    var checkboxArray = document.getElementById('waypoints');
-    for (var i = 0; i < checkboxArray.length; i++) {
-        if (checkboxArray.options[i].selected == true) {
-            waypts.push({
-                location:checkboxArray[i].value,
-            stopover:true});
-        }
+    var waypoints = document.getElementsByName('waypoint');
+    for (var i = 0; i < waypoints.length; i++) {
+        if (/^\s*$/ig.test(waypoints[i].value)) continue;
+        waypts.push({location: waypoints[i].value, stopover:true});
     }
 
     var request = {
@@ -35,6 +37,7 @@ function calcRoute() {
         travelMode: google.maps.DirectionsTravelMode.DRIVING
     };
     directionsService.route(request, function(response, status) {
+        console.log(response, status);
         if (status == google.maps.DirectionsStatus.OK) {
             directionsDisplay.setDirections(response);
             var route = response.routes[0];

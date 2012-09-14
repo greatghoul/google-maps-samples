@@ -13,17 +13,19 @@
         <div id="control-panel">
             <div class="panel">
                 <h3>行车路线</h3>
-                <strong>起点</strong>：<input type="text" id="start-location" />
+                <strong>起点</strong>：<input type="text" id="start-location" value="西安市灞桥区半坡" />
                 <ul class="unstyled" id="stop-locations">
-                    <li>经过：<input type="text" /></li>
-                    <li>经过：<input type="text" /></li>
-                    <li>经过：<input type="text" /></li>
-                    <li>经过：<input type="text" /></li>
+                    <li>经过：<input type="text" name="waypoint" value="西安市兴庆公园" /></li>
+                    <li>经过：<input type="text" name="waypoint" /></li>
+                    <li>经过：<input type="text" name="waypoint" /></li>
+                    <li>经过：<input type="text" name="waypoint" /></li>
                 </ul>
-                <strong>终点</strong>：<input type="text" id="end-location" />
+                <strong>终点</strong>：<input type="text" id="end-location" value="西安市科技路西口" />
                 <div class="form-actions">
-                    <button>查询路线</button>
+                    <button onclick="calcRoute()">查询路线</button>
                 </div>
+
+                <div id="directions_panel"></div>
             </div>
         </div>
     </body>
