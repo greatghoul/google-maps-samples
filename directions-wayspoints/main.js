@@ -5,7 +5,7 @@
 
 var directionDisplay;
 var directionsService = new google.maps.DirectionsService();
-var map;
+var map, geocoder;
 
 function initialize() {
     directionsDisplay = new google.maps.DirectionsRenderer();
@@ -16,6 +16,7 @@ function initialize() {
         center: chicago
     }
     map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+    geocoder = new google.maps.Geocoder();
     directionsDisplay.setMap(map);
 }
 
@@ -54,3 +55,21 @@ function calcRoute() {
         }
     });
 }
+
+$(function() {
+    $('.location').typeahead({
+        source: function (query, process) {
+            geocoder.geocode({ address: query }, function(results, status) {
+                var addressList = $.map(results, function(result) {
+                    return result.formatted_address;
+                });
+                return process(addressList);
+            });
+        },
+        // matcher 返回 true 以支持带空格的模糊查询
+        matcher: function(item) {
+            return true; 
+        }
+    });
+});
+
