@@ -31,6 +31,34 @@ ul.unstyled {
     margin-bottom: 3px;
 }
 
+#stop-locations .close {
+    float: none;
+}
+
+.location-wrap {
+    margin-bottom: 9px;
+}
+
+.location-wrap label {
+    display: inline;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+.location-wrap-start label,
+.location-wrap-end   label {
+    font-weight: bold;
+}
+
+.location-wrap input[type=text] {
+    margin-bottom: 0;
+}
+
 .form-actions {
     margin-top: 5px;
+}
+
+.stop-actions { 
+    padding-left: 45px;
+    margin-bottom: 9px;
 }
