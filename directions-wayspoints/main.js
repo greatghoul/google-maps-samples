@@ -112,7 +112,9 @@ $(function() {
         $('#stop-locations').append($stop);
         bind_typeahead($stop.find('.location'));
         $stop.find('.close').click(function() {
-            $(this).parents('.location-wrap').fadeOut('fast');
+            $(this).parents('.location-wrap').fadeOut('fast', function() {
+                $(this).remove();
+            });
         });
     });
 });
