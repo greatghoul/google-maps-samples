@@ -89,20 +89,8 @@ var TPL_STOP = ''
 
 $(function() {
     function bind_typeahead($node) {
-        return $node.typeahead({
-            source: function (query, process) {
-                geocoder.geocode({ address: query }, function(results, status) {
-                    var addressList = $.map(results, function(result) {
-                        return result.formatted_address.replace(/\s*邮政编码\:.*/ig, '');
-                    });
-                    return process(addressList);
-                });
-            },
-
-            // matcher 返回 true 以支持带空格的模糊查询
-            matcher: function(item) {
-                return true; 
-            }
+        $node.each(function() {
+            new google.maps.places.Autocomplete(this);
         });
     }
     bind_typeahead($('.location'));
