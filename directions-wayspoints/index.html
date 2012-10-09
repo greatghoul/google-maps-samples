@@ -13,14 +13,14 @@
         <!--<script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/js/bootstrap.min.js"></script>-->
         <script src="main.js"></script>
     </head>
-    <body onload="initialize()">
+    <body>
         <div id="map-canvas"></div>
         <div id="control-panel">
             <div class="panel">
                 <h3>行车路线</h3>
                 <div class="location-wrap location-wrap-start">
                     <label>起点</label>
-                    <input type="text" id="start-location" class="location" value="" />
+                    <input type="text" id="start-location" class="location" value="陕西省西安灞桥区半坡路" />
                 </div>
                 <ul class="unstyled" id="stop-locations">
                 </ul>
@@ -32,10 +32,11 @@
                     <input type="text" id="end-location" class="location" value="西安市科技路西口" />
                 </div>
                 <div class="form-actions">
-                    <button onclick="calcRoute()" class="btn btn-primary">查询路线</button>
+                    <button class="btn btn-primary" id="btn-route">查询路线</button>
                 </div>
                 
-                <div id="directions_panel"></div>
+                <ul id="directions_navs"></ul>
+                <ul id="directions_panel" class="unstyled"></ul>
             </div>
         </div>
     </body>
