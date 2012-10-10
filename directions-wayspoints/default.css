@@ -62,3 +62,21 @@ ul.unstyled {
     padding-left: 45px;
     margin-bottom: 9px;
 }
+
+#directions_navs {
+    margin-bottom: 5px;
+}
+
+.route .route-mileage {
+    float: right;
+    width: 80px;
+}
+
+.route .route-addr {
+    margin-right: 80px;
+}
+
+.route .label {
+    margin-top: 12px; 
+    text-align: center;
+}

@@ -10,11 +10,15 @@ $(function() {
             + '</li>',
 
         ROUTE: ''
-            + '<li class="route">'
-                + ' 从 <strong>%{start_address}</strong>'
-                + ' 至 <strong>%{end_address}</strong>'
-                + ' (%{distance.text})'
-            + '</li>',
+            + '<li class="route clearfix"><a href="javascript:;">'
+                + '<div class="route-mileage">'
+                    + '<label class="label label-info">%{distance.text}</label>'
+                + '</div>'
+                + '<div class="route-addr">'
+                    + '从 <strong>%{start_address}</strong><br />'
+                    + '至 <strong>%{end_address}</strong>'
+                + '</div>'
+            + '</a></li>',
 
         NAVITEM: ''
             + '<li class="navitem">'
@@ -79,9 +83,14 @@ $(function() {
                     $directions_navs.append(navitem_html);    
                 }
 
+                $('#directions_navs .navitem:eq(0)').addClass('active');
                 display_route(curr_response, 0);
             }
         });
+    }
+
+    function fix_zip(addr) {
+        return addr.replace(/\s*邮政编码\:.*/ig, '');
     }
 
     function display_route(response, route_index) {
@@ -90,6 +99,8 @@ $(function() {
         var route = response.routes[route_index];
         // For each route, display summary information.
         var html = $.map(route.legs, function(leg) {
+            leg.start_address = fix_zip(leg.start_address);
+            leg.end_address   = fix_zip(leg.end_address);
             return fmt(TPLS.ROUTE, leg); 
         }).join('');
         $('#directions_panel').html(html);
@@ -114,7 +125,11 @@ $(function() {
     $('#btn-route').click(execute_route);
     
     $('#directions_navs .navitem a').live('click', function() {
-        var index = parseInt($(this).data('index'));
+        $('#directions_navs .navitem').removeClass('active');
+        
+        var $this = $(this);
+        $this.parent().addClass('active');
+        var index = parseInt($this.data('index'));
         display_route(curr_response, index);
     });
     initialize();
