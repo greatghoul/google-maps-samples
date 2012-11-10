@@ -1,7 +1,11 @@
 $(function() {
     var map, geocoder, directionDisplay, directionsService, curr_response;
     var $directions_navs = $('#directions_navs');
-
+    var xian = new google.maps.LatLng(34.198564,108.895614);
+    var defaultBounds = new google.maps.LatLngBounds(
+      new google.maps.LatLng(33.683211, 107.665192),  // 西南
+      new google.maps.LatLng(34.782228, 109.752594)); // 东北
+    
     var TPLS = {
         LOC: ''
             + '<li class="location-wrap"><label>经过</label>'
@@ -43,7 +47,6 @@ $(function() {
     function initialize() {
         directionsDisplay = new google.maps.DirectionsRenderer({ draggable: true });
         directionsService = new google.maps.DirectionsService();
-        var xian = new google.maps.LatLng(34.198564,108.895614);
         var map_options = {
             zoom: 15,
             center: xian,
@@ -108,7 +111,7 @@ $(function() {
 
     function bind_typeahead($location) {
         $location.each(function() {
-            new google.maps.places.Autocomplete(this);
+            new google.maps.places.Autocomplete(this, { bounds: defaultBounds });
         });
     }
     bind_typeahead($('.location'));
