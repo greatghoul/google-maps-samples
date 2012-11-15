@@ -2,7 +2,7 @@
 
 **使用到的API**
 
- * [google.maps.places.Autocomplete][api-ac]]
+ * [google.maps.places.Autocomplete][api-ac]
  * [google.maps.LatLngBounds][api-llb]
 
 **参考资料**
